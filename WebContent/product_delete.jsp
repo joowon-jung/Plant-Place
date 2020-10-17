@@ -28,15 +28,15 @@ location.href = 'product_list.jsp';
 
 <% 
 }
-String savePath = "C:/Users/ppoxx/eclipse-workspace/Plant_Place/WebContent/images_pd/";
+String savePath = "/Users/jungjoowon/eclipse-workspace/Plant_Place/WebContent/images_pd/";
 int sizeLimit = 5 * 1024 * 1024; // 최대 업로드 파일 크기 5MB(메가)로 제한
 
 String encType = "UTF-8";
 
 ServletContext context = getServletContext();
 
-String driverName = "org.gjt.mm.mysql.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 Class.forName(driverName);
 Connection conn = DriverManager.getConnection(dbURL,"root","dongyang");
@@ -56,7 +56,7 @@ String delfile = rs.getString("pd_file");
 stmt.close();
 
 
-String fileUrl = "C:/Users/ppoxx/eclipse-workspace/Plant_Place/WebContent/images_pd/" + delfile;
+String fileUrl = "/Users/jungjoowon/eclipse-workspace/Plant_Place/WebContent/images_pd/" + delfile;
 boolean fileexists = true;
 try
 {

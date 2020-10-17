@@ -24,7 +24,7 @@
 		head_images[3] = "head_tools.jpg";
 		head_images[4] = "head_others.jpg";
 		head_images[5] = "head_nutrition.jpg";
-		String path = "C:/Users/ppoxx/eclipse-workspace/Plant_Place/WebContent/";
+		//String path = "/Users/jungjoowon/eclipse-workspace/Plant_Place/WebContent/";
 
 		String strgroup = request.getParameter("group");
 		if (strgroup == null)
@@ -35,8 +35,8 @@
 
 		String strSQL = "";
 
-		String driverName = "org.gjt.mm.mysql.Driver";
-		String dbURL = "jdbc:mysql://localhost:3306/test";
+		String driverName = "oracle.jdbc.driver.OracleDriver";
+		String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 		Class.forName(driverName);
 		Connection conn = DriverManager.getConnection(dbURL, "root", "dongyang");
@@ -50,7 +50,7 @@
 
 		int itemCount = rs.getInt(1);
 
-		String image_path = path + "images/" + head_images[group];
+		String image_path = "images/" + head_images[group];
 
 		rs.close();
 	%>
@@ -73,7 +73,7 @@
 						int price = rs.getInt("pd_price");
 						String file = rs.getString("pd_file");
 
-						image_path = path + "images_pd/" + file;
+						image_path = "/Users/jungjoowon/eclipse-workspace/Plant_Place/WebContent/images_pd/" + file;
 		%>
 		<li class="pro_li">
 		<a href="product_detail.jsp?pd_num=<%=num%>&rv_page=1">

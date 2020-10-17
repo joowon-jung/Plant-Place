@@ -84,8 +84,8 @@ String pd_num = request.getParameter("pd_num");
 String num = request.getParameter("num");
 Object user = session.getAttribute("user");
 
-String driverName = "com.mysql.jdbc.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 
  Class.forName(driverName);
@@ -214,7 +214,8 @@ if(user != null) {
 
 <%
 String strSQL = "SELECT * FROM tblcomment WHERE cm_rvnum = '" + num +"'";
-rs = pstmt.executeQuery(strSQL); 
+pstmt = conn.prepareStatement(strSQL);
+rs = pstmt.executeQuery(); 
 
 while(rs.next()){ 
 %>

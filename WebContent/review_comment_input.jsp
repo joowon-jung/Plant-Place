@@ -16,8 +16,8 @@ String contents = request.getParameter("comment");
 String pd_num = request.getParameter("pd_num");
 int num_plus = 0;
 
-String driverName = "org.gjt.mm.mysql.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 Class.forName(driverName);
 Connection conn = DriverManager.getConnection(dbURL,"root","dongyang");
@@ -27,13 +27,25 @@ Statement stmt = conn.createStatement();
 String strSQL = "SELECT cm_id FROM tblcomment ORDER BY cm_id DESC";
 ResultSet rs = stmt.executeQuery(strSQL);
 
-if(rs.wasNull())  
-	num_plus = 1;
-else {
-    	strSQL = "SELECT Max(cm_id) FROM tblcomment";
-    	rs = stmt.executeQuery(strSQL);
+// if(rs.wasNull())  
+// 	num_plus = 1;
+// else {
+//     	strSQL = "SELECT Max(cm_id) FROM tblcomment";
+//     	rs = stmt.executeQuery(strSQL);
+//     	rs.next();
+//     	num_plus = rs.getInt(1) + 1;
+// }
+
+while (rs.next()) {
+	rs.getInt(1);
+	if (rs.wasNull())
+		num_plus = 1;
+	else {
+		strSQL = "SELECT Max(cm_id) FROM tblcomment";
+		rs = stmt.executeQuery(strSQL);
     	rs.next();
     	num_plus = rs.getInt(1) + 1;
+	}
 }
 
 Calendar dateIn = Calendar.getInstance();

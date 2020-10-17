@@ -59,11 +59,11 @@ int listSize = 5; //게시판 글 갯수
 int currentPage = Integer.parseInt(pageNum); //현재 페이지
 int lastRow = 0; //총 글의 갯수
 int i = 0;
-String strSQL = "";
+	String strSQL = "";
 
    
-    String driverName = "com.mysql.jdbc.Driver";
-    String dbURL = "jdbc:mysql://localhost:3306/test";
+	String driverName = "oracle.jdbc.driver.OracleDriver";
+	String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 
         Class.forName(driverName);

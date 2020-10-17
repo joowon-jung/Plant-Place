@@ -34,12 +34,13 @@ if(user == null) {
 	<%
 	}
 
-String driverName = "org.gjt.mm.mysql.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 Class.forName(driverName);
 Connection conn = DriverManager.getConnection(dbURL, "root", "dongyang");
-Statement stmt = conn.createStatement(); Statement stmt2 = conn.createStatement();
+Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE); 
+Statement stmt2 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 ResultSet rs = null, rs2 = null;
 String strSQL = "SELECT * FROM tblreview WHERE rv_userid='"+user+"'";
 rs = stmt.executeQuery(strSQL);

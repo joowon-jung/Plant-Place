@@ -9,8 +9,8 @@ String name = request.getParameter("name");
 String title = request.getParameter("title");
 String contents = request.getParameter("contents");
 
-String driverName = "com.mysql.jdbc.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 
     Class.forName(driverName);
@@ -28,7 +28,7 @@ indate = indate + Integer.toString(dateIn.get(Calendar.MINUTE)) + ":";
 indate = indate + Integer.toString(dateIn.get(Calendar.SECOND));
 
 String strSQL = "";
-strSQL = "update tblreview set rv_title='"+title+"', rv_contents='"+contents+"', rv_writedate='"+indate+"' where rv_num="+num+";";
+strSQL = "update tblreview set rv_title='"+title+"', rv_contents='"+contents+"', rv_writedate='"+indate+"' where rv_num="+num;
 
 stmt.executeUpdate(strSQL);
 

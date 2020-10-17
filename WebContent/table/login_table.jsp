@@ -15,24 +15,24 @@
 	%>
 
 	<%
-		String driver = "org.gjt.mm.mysql.Driver";
-		String url = "jdbc:mysql://localhost:3306/test";
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 		String user = "root";
 		String pwd = "dongyang";
 		Connection con = null;
 		Statement stmt = null;
 
 		String sql = "create table tbllogin( ";
-		sql = sql + "id varchar(20), ";
-		sql = sql + "pass varchar(20), ";
-		sql = sql + "name varchar(20), ";
+		sql = sql + "id varchar2(20), ";
+		sql = sql + "pass varchar2(20), ";
+		sql = sql + "name varchar2(20), ";
 		sql = sql + "zip char(7), ";
-		sql = sql + "address1 varchar(50), ";
-		sql = sql + "address2 varchar(50), ";
-		sql = sql + "phone varchar(20), ";
-		sql = sql + "email varchar(30), ";
+		sql = sql + "address1 varchar2(50), ";
+		sql = sql + "address2 varchar2(50), ";
+		sql = sql + "phone varchar2(20), ";
+		sql = sql + "email varchar2(30), ";
 		sql = sql + "bday char(12), ";
-		sql = sql + "PRIMARY KEY (id)) DEFAULT CHARSET=utf8;";
+		sql = sql + "PRIMARY KEY (id) )";
 		
 		
 		try {
@@ -40,8 +40,8 @@
 			con = DriverManager.getConnection(url, user, pwd);
 			stmt = con.createStatement();
 			stmt.executeUpdate(sql);
-			sql = "SET NAMES utf8;";
-			stmt.executeUpdate(sql);
+			//sql = "SET NAMES utf8;";
+			//stmt.executeUpdate(sql);
 			// 관리자 추가
 			String strSQL = "INSERT INTO tbllogin(id,pass,name,zip,address1,address2,phone,email,bday)";
 			strSQL = strSQL +  "VALUES('admin', '1234', 'admin', '', '', '', '', '', '')"; 

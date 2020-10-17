@@ -20,8 +20,8 @@ if(!s_user.equals("admin")) { %>
 <% } else {
 	String id = request.getParameter("userid");
 	
-	String driverName = "org.gjt.mm.mysql.Driver";
-	String dbURL = "jdbc:mysql://localhost:3306/test";
+	String driverName = "oracle.jdbc.driver.OracleDriver";
+	String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 	Class.forName(driverName);
 	Connection conn = DriverManager.getConnection(dbURL,"root","dongyang");

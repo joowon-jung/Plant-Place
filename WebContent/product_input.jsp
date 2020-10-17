@@ -12,7 +12,7 @@
 
 <%
 String realFolder = "";
-String savePath = "C:/Users/ppoxx/eclipse-workspace/Plant_Place/WebContent/images_pd/";
+String savePath = "/Users/jungjoowon/eclipse-workspace/Plant_Place/WebContent/images_pd/";
 int sizeLimit = 5 * 1024 * 1024; // 최대 업로드 파일 크기 5MB(메가)로 제한
 DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 
@@ -20,8 +20,8 @@ String encType = "UTF-8";
 
 ServletContext context = getServletContext();
 
-String driverName = "org.gjt.mm.mysql.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 Class.forName(driverName);
 Connection conn = DriverManager.getConnection(dbURL,"root","dongyang");
@@ -39,19 +39,38 @@ String group = multi.getParameter("pgroup");
 
 Statement stmt = conn.createStatement();
 
-String strSQL = "SELECT Max(pd_num) FROM tblproduct";
-ResultSet rs = stmt.executeQuery(strSQL);
-int num = 1;
+// String strSQL = "SELECT Max(pd_num) FROM tblproduct";
+// ResultSet rs = stmt.executeQuery(strSQL);
+// int num = 1;
 
-if (!rs.wasNull()){
-	rs.next();
-	num = rs.getInt(1) + 1;	
+// if (!rs.wasNull()){
+// 	rs.next();
+// 	num = rs.getInt(1) + 1;	
+// }
+int num = 1;
+ResultSet rs = stmt.executeQuery("select count(*) from tblproduct");
+String strSQL = "";
+
+while (rs.next()) {
+	rs.getInt(1);
+	if (rs.wasNull()) {
+		num = 1;
+	} else {
+		strSQL = "SELECT Max(pd_num) FROM tblproduct";
+		rs = stmt.executeQuery(strSQL);
+		rs.next();
+		num = rs.getInt(1) + 1;
+	}
 }
 
 if(flag.equals("modify")) {
-	if(fileName == null) strSQL = "UPDATE tblproduct SET pd_name='"+name+"', pd_price='"+price+"', pd_group='"+group+"' WHERE pd_num="+pd_num+";";
+	if(fileName == null) {
+		strSQL = "UPDATE tblproduct SET pd_name='"+name+"', pd_price='"+price+"', pd_group='"+group+"' WHERE pd_num="+pd_num;
+		stmt.executeUpdate(strSQL);
+	}
 	else {
-		strSQL = "UPDATE tblproduct SET pd_name='"+name+"', pd_price='"+price+"', pd_group='"+group+"', pd_file='"+fileName+"' WHERE pd_num="+pd_num+";";
+		strSQL = "UPDATE tblproduct SET pd_name='"+name+"', pd_price='"+price+"', pd_group='"+group+"', pd_file='"+fileName+"' WHERE pd_num="+pd_num;
+		stmt.executeUpdate(strSQL);
 		
 	}
 } else {
@@ -59,9 +78,11 @@ if(flag.equals("modify")) {
 strSQL ="INSERT INTO tblproduct (pd_num, pd_name, pd_price, pd_group, pd_file)";
 strSQL = strSQL +  "VALUES('" + num + "', '" + name + "', '" + price + "', '" + group + "',";
 strSQL = strSQL +  "'" + fileName + "')";
-}
-stmt.executeUpdate(strSQL);
 
+stmt.executeUpdate(strSQL);
+}
+
+rs.close();
 stmt.close();                	
 conn.close();
 

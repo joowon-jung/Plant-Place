@@ -27,8 +27,8 @@ indate = indate + Integer.toString(dateIn.get(Calendar.MINUTE)) + ":";
 indate = indate + Integer.toString(dateIn.get(Calendar.SECOND));
 
 
-String driverName = "com.mysql.jdbc.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
 
 Class.forName(driverName);
@@ -38,16 +38,34 @@ Statement stmt = conn.createStatement();
 PreparedStatement pstmt1 = null, pstmt2 = null;
 
 //글번호
-String strSQL = "SELECT Max(rv_num) FROM tblreview";
-pstmt1 = conn.prepareStatement(strSQL);
-ResultSet rs = pstmt1.executeQuery();
-int rv_num = 1;
+// String strSQL = "SELECT Max(rv_num) FROM tblreview";
+// pstmt1 = conn.prepareStatement(strSQL);
+// ResultSet rs = pstmt1.executeQuery();
+// int rv_num = 1;
 
-if (!rs.wasNull()){
-	rs.next();
-	rv_num = rs.getInt(1) + 1;	
-}	
-rs.close();
+// if (!rs.wasNull()){
+// 	rs.next();
+// 	rv_num = rs.getInt(1) + 1;	
+// }	
+// rs.close();
+
+int rv_num = 1;
+pstmt1 = conn.prepareStatement("select count(*) from tblproduct");
+ResultSet rs = pstmt1.executeQuery();
+
+String strSQL = "";
+
+while (rs.next()) {
+	rs.getInt(1);
+	if (rs.wasNull()) {
+		rv_num = 1;
+	} else {
+		strSQL = "SELECT Max(rv_num) FROM tblreview";
+		rs = stmt.executeQuery(strSQL);
+		rs.next();
+		rv_num = rs.getInt(1) + 1;
+	}
+}
 	
 //값 집어넣음
 strSQL ="INSERT INTO tblreview(rv_num, rv_pdnum, rv_userid, rv_title, rv_contents, rv_writedate, rv_readcount)";

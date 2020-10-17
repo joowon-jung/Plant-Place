@@ -8,8 +8,8 @@ int num = Integer.parseInt(request.getParameter("num"));
 String cm_id = request.getParameter("cm_id");
 String contents = request.getParameter("contents");
 
-String driverName = "com.mysql.jdbc.Driver";
-String dbURL = "jdbc:mysql://localhost:3306/test";
+String driverName = "oracle.jdbc.driver.OracleDriver";
+String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 
     Class.forName(driverName);
     Connection conn = DriverManager.getConnection(dbURL, "root", "dongyang");
@@ -26,7 +26,7 @@ indate = indate + Integer.toString(dateIn.get(Calendar.MINUTE)) + ":";
 indate = indate + Integer.toString(dateIn.get(Calendar.SECOND));
 
 String strSQL = "";
-strSQL = "update tblcomment set contents='"+contents+"', cm_writedate='"+indate+"' where cm_id="+cm_id+";";
+strSQL = "update tblcomment set contents='"+contents+"', cm_writedate='"+indate+"' where cm_id="+cm_id;
 
 stmt.executeUpdate(strSQL);
 
