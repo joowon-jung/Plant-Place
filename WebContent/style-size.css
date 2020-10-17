@@ -1,0 +1,33 @@
+.wrap { width:800px; min-height:600px; }
+
+header { height: 80px; }
+
+nav { width: 800px; }
+    
+nav a { height:20px; }
+
+footer { height:70px; }
+
+aside { width: 50px;}
+
+#login fieldset span { width: 80px; }
+
+#signup fieldset span { width: 90px; }
+#signup { width: 410px; }
+.signhead { width: 110px;}
+
+#order table td, th{ width: 150px; height: 30px; }
+
+#mainframe { width:730px; height:68vh; }
+
+.booklist { height: 480px; }
+
+.booklist ul li { width: 150px; height: 180px; }
+
+.musiclist ul li { width: 530px; }
+
+.booklist ul li img { width: 130px; height: 140px; }
+
+.booklist ul li audio, video { width: 330px; }
+
+.booklist ul li video { height: 120px; }

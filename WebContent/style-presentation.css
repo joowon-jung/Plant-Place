@@ -1,0 +1,119 @@
+body { background-color: white; font-size: 0.75em; line-height: 1.2em; }
+
+img { border:none; }
+
+.wrap { text-align:left; background-color: white; }
+
+a { text-decoration: none; color:#008040; }
+
+#logo { color: green; font-size: 48px; }
+
+header .right a:hover { color: gray; }
+header { color: green; }
+
+input { color: #0A2A0A; }
+
+nav { background-color: green; }
+    
+nav ul { list-style:none; font-family: Verdana, Geneva, sans-serif; font-size: 14px;
+    font-weight: bold; color: #ff0099;
+}
+
+nav a { text-decoration:none; color:#000000; border-style: hidden hidden solid hidden;
+    border-color: transparent;
+}
+
+nav a:hover { color:white;    border-color: lightgreen; }
+
+footer #copyright { font-family: consolas; } 
+
+footer #SNS a { text-decoration: none; }
+
+.colorcenter { background-color: #E0FFDB; text-align: center; }
+.colorcenter table { width: 300px; height: 150px; text-align: center; margin: auto;
+					font-size: 14px;}
+.colorcenter td {vertical-align: middle;}
+
+.board { padding-top: 12px; padding-bottom: 10px;}
+
+.board .head { text-align: center;
+width: 200px; height: 50px; border: 0px; background-color: green; color: white; font-weight: bold; }
+
+.board hr {color:green; border-color:green; background-color:green;
+margin-top:3px; margin-bottom:3px;}
+
+#login, #signup { background-color: #E0FFDB; }
+
+#login, #order { overflow-y: auto; }
+
+#order .head { font-size: 16px; font-weight: bolder; }
+
+#order fieldset { padding-left: 10px; padding-right: 10px;}
+
+#order table { border-collapse:collapse; border: 0px; }
+
+#order table input { background-color: transparent; }
+
+#signup form table { border-spacing:0px; }
+#signup form table tr td { padding: 4px 5px 3px 5px;}
+
+#order table td, #order table th {  text-align: center;
+width: 120px; height: 50px; border: 0px; background-color: green; color: white; font-weight: bold; }
+
+#order .ordert td { width: 120px; height:90px; border: 1px solid silver; background-color:transparent; color: black; font-size: 14px;}
+
+.booklist { font-family: arial; background-color: white;
+    background-repeat: no-repeat;
+	background-position: 0px 0px; border-radius:0px;
+	overflow-y: auto;
+}
+
+.aerialview { background-image: url(./images/aerialview.jpg); }
+
+.booklist .head { font-size: 16px; font-weight: bolder; }
+
+.booklist ul { margin-left: auto; margin-right: auto; width: 600px;}
+
+.booklist ul li { font-size: 12px; text-align:center; 
+line-height:20px; letter-spacing: 1px; word-spacing: 1px; 
+list-style-type: none; }
+
+.musiclist ul li { font-size: 12px; font-weight: bold;
+    text-shadow: 0.2em 0.2em 0.2em white;
+}
+
+.booklist ul li img { border: solid; border-color: lightgray; border-width: 1px; }
+
+.button {
+    width:80px;
+    background-color: green;
+    border: none;
+    color:#fff;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px;
+    cursor: pointer;
+    border-radius:10px;
+
+}
+
+#signup .button {
+    width:75px;
+    background-color: green;
+    border: none;
+    color:#fff;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px;
+    cursor: pointer;
+    border-radius:3px;
+
+}
